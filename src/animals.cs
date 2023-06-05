@@ -34,4 +34,12 @@ namespace Program
             Console.WriteLine("Moo!");
         }
     }
+
+    public class Pig : Animal
+    {
+        public override void MakeSound()
+        {
+            Console.WriteLine("Oink!");
+        }
+    }
 }
