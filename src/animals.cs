@@ -34,7 +34,16 @@ namespace Program
             Console.WriteLine("Moo!");
         }
     }
-        // Define a generic class
+
+    public class Pig : Animal
+    {
+        public override void MakeSound()
+        {
+            Console.WriteLine("Oink!");
+        }
+    }
+    
+    // Define a generic class
     public class Zoo<T> where T : Animal
     {
         private List<T> animals;
