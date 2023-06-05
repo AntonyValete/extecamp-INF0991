@@ -19,5 +19,11 @@ namespace Program
         }
     }
 
-    
+    public class Cat : Animal
+    {
+        public override void MakeSound()
+        {
+            Console.WriteLine("Meow!");
+        }
+    }
 }
