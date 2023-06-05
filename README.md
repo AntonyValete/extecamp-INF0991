@@ -32,12 +32,35 @@ Essa ferramenta pode ser utilizada para gerar packages de instaladores e de cód
 
 
 ## Rebase da branch
-Executando o comando com a flag `--rebase`, é possível integrar patches de mudanças introduzidas em diferentes branches. Se tivermos uma branch `feature` com novas features, poderemos implementá-la realizando o rebase na `master`.
+Executando o comando com a flag `rebase`, é possível integrar patches de mudanças introduzidas em diferentes branches. Se tivermos uma branch `feature` com novas features, poderemos implementá-la realizando o rebase a partir da `main`.
 ```shell
 git checkout <feature>
-git rebase master
+git rebase main
 ```
+Isso fará com que o ponto `HEAD` padrão agora seja apontado para a `<feature>` conforme o diagrama abaixo:
+<img src="https://git-scm.com/book/en/v2/images/basic-rebase-3.png" />
+Só será possível completar o rebase, porém, se resolvermos os conflitos entre as diferentes branches em relação ao mesmo código. Para isso, podemos utilizar o editor de Merge do VSCode:
 
-## Logs de atualização
+<img src="./assets/merge-editor.jpg" />
+
+Após completar o merge com ambos os códigos (a depender a intenção de implementação), podemos então voltar para a branch `main` e realizar o `merge`.
+```shell
+git checkout main
+git merge <feature>
+git push origin main
+```
+Com isso poderemos ver nossas alterações no repositório remoto da versão mais atual da `main`, já com o merge da branch `<feature>`.
+
+Ao executar o comando a seguir, poderemos verificar o seguinte Log de alterações:
+```shell
+git log --oneline --decorate --graph --all
+```
+<img src="./assets/git-log.jpg" />
+
+Após completar o processo acima, finalmente teremos o `HEAD` da `main` e da branch `<feature>` apontando para a mesma versão:
+<img src="https://git-scm.com/book/en/v2/images/basic-rebase-4.png" />
+
+Podemos então continuar o desenvolvimento a partir deste ponto, repetir o processo e criar novas branches com novas features.
+
 ## License
 >MIT License. You can fork, copy, use, modify, and distribute this repository without restriction.
