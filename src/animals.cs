@@ -55,6 +55,9 @@ namespace Program
         {
             return animals;
         }
+
+        // Define a delegate
+        public delegate void AnimalHandler<T>(T animal);
     }
 
 }
