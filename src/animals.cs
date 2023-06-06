@@ -58,6 +58,38 @@ namespace Program
 
         // Define a delegate
         public delegate void AnimalHandler<T>(T animal);
-    }
 
+        public class Program
+        {   
+            static void Main(string[] args)
+            {
+                // Create an instance of the Zoo class
+                Zoo<Animal> zoo = new Zoo<Animal>();
+
+                // Create some animal objects
+                Dog dog1 = new Dog { Name = "Buddy" };
+                Dog dog2 = new Dog { Name = "Max" };
+                Cat cat1 = new Cat { Name = "Whiskers" };
+
+                // Add animals to the zoo
+                zoo.AddAnimal(dog1);
+                zoo.AddAnimal(dog2);
+                zoo.AddAnimal(cat1);
+
+                // List animals in the zoo
+                zoo.ListAnimals();
+
+                // Use delegate to perform an action on each animal
+                AnimalHandler<Animal> animalHandler = (animal) =>
+                {
+                    Console.WriteLine("Feeding: " + animal.Name);
+                };
+
+                foreach (Animal animal in zoo.GetAnimals())
+                {
+                    animalHandler(animal);
+                }
+            }
+        }
+    }
 }
